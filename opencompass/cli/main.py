@@ -178,29 +178,19 @@ def parse_dlc_args(dlc_parser):
                             default='~/.aliyun.cfg',
                             type=str)
 
-
 def parse_hf_args(hf_parser):
     """These args are all for the quick construction of HuggingFace models."""
-    hf_parser.add_argument('--hf-path', type=str)
-    hf_parser.add_argument('--peft-path', type=str)
-    hf_parser.add_argument('--tokenizer-path', type=str)
-    hf_parser.add_argument('--model-kwargs',
-                           nargs='+',
-                           action=DictAction,
-                           default={})
-    hf_parser.add_argument('--tokenizer-kwargs',
-                           nargs='+',
-                           action=DictAction,
-                           default={})
-    hf_parser.add_argument('--max-out-len', type=int)
-    hf_parser.add_argument('--max-seq-len', type=int)
-    hf_parser.add_argument('--no-batch-padding',
-                           action='store_true',
-                           default=False)
-    hf_parser.add_argument('--batch-size', type=int)
-    hf_parser.add_argument('--num-gpus', type=int)
-    hf_parser.add_argument('--pad-token-id', type=int)
-
+    hf_parser.add_argument('--hf-path', type=str, help='Path to the HuggingFace model directory')
+    hf_parser.add_argument('--peft-path', type=str, help='Path to PEFT model if applicable')
+    hf_parser.add_argument('--tokenizer-path', type=str, help='Path to tokenizer')
+    hf_parser.add_argument('--model-kwargs', nargs='+', action=DictAction, default={}, help='Keyword arguments for model configuration in key=value format')
+    hf_parser.add_argument('--tokenizer-kwargs', nargs='+', action=DictAction, default={}, help='Keyword arguments for tokenizer configuration in key=value format')
+    hf_parser.add_argument('--max-out-len', type=int, help='Maximum output length for model predictions')
+    hf_parser.add_argument('--max-seq-len', type=int, help='Maximum sequence length for model input')
+    hf_parser.add_argument('--no-batch-padding', action='store_true', default=False, help='Disable padding for batches')
+    hf_parser.add_argument('--batch-size', type=int, help='Batch size for processing')
+    hf_parser.add_argument('--num-gpus', type=int, help='Number of GPUs to use')
+    hf_parser.add_argument('--pad-token-id', type=int, help='Token ID used for padding by the tokenizer')
 
 def parse_custom_dataset_args(custom_dataset_parser):
     """These args are all for the quick construction of custom datasets."""
